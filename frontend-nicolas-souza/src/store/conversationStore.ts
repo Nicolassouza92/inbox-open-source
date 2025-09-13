@@ -1,25 +1,47 @@
 import { create } from 'zustand';
 import type { Message } from '@/types/message';
+import type { Conversation } from '@/types';
 
 interface ConversationState {
+  conversations: Conversation[];
   selectedConversationId: string | null;
+  selectedConversation: Conversation | null;
   messages: Message[];
   isLoading: boolean;
   error: string | null;
+  setConversations: (conversations: Conversation[]) => void;
   setSelectedConversationId: (id: string | null) => void;
+  addMessage: (message: Message) => void;
   fetchMessages: (conversationId: string) => Promise<void>;
 }
 
-export const useConversationStore = create<ConversationState>((set) => ({
+export const useConversationStore = create<ConversationState>((set, get) => ({
+  conversations: [],
   selectedConversationId: null,
+  selectedConversation: null,
   messages: [],
   isLoading: false,
   error: null,
 
+  addMessage: (message) => set((state) => ({
+    messages: [...state.messages, message],
+  })),
+
+  setConversations: (conversations) => set({ conversations }),
+
   setSelectedConversationId: (id) => {
-    set({ selectedConversationId: id, messages: [], error: null });
+    const { conversations } = get();
+    const selected = conversations.find(c => c.id === id) || null;
+    
+    set({ 
+      selectedConversationId: id, 
+      selectedConversation: selected,
+      messages: [], 
+      error: null 
+    });
+
     if (id) {
-      useConversationStore.getState().fetchMessages(id);
+      get().fetchMessages(id);
     }
   },
 

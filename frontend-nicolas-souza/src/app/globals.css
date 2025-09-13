@@ -1,33 +1,22 @@
-/* As diretivas clássicas do Tailwind v3 */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* O painel de controle de estilo continua igual */
 :root {
-  /* Cores de Fundo */
-  --color-bg-primary: #111827;
-  --color-bg-secondary: #1F2937;
-
-  /* Cores de Texto */
-  --color-text-base: #D1D5DB;
-  --color-text-muted: #9CA3AF;
-  --color-text-accent: #FFFFFF;
-
-  /* Cores de Acento/Marca */
+  --color-bg-primary: #FFFFFF;
+  --color-bg-secondary: #F3F4F6;
+  --color-text-base: #111827;
+  --color-text-muted: #6B7280;
+  --color-text-accent: #4C1D95;
   --color-accent: #6D28D9;
-  --color-accent-hover: #7C3AED;
-
-  /* Cores das Mensagens */
-  --color-message-sent: #2563EB;
-  --color-message-received: #4B5563;
-
-  /* Bordas */
-  --color-border: #374151;
+  --color-accent-hover: #8B5CF6;
+  --color-message-sent: #6D28D9;
+  --color-message-received: #E5E7EB;
+  --color-border: #D1D5DB;
+  --color-bg-content: #F5F3FF;
 }
 
 body {
-  /* Aplicamos nossas variáveis aqui */
   background-color: var(--color-bg-primary);
   color: var(--color-text-base);
   font-family: Arial, Helvetica, sans-serif;
